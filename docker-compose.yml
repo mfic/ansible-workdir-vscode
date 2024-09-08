@@ -1,0 +1,14 @@
+---
+services:
+  vscode-ansible:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vscode-ansible
+    ports:
+      - "8080:8080" # You can change the host port if needed
+    volumes:
+      - ./workspace:/home/vscode/workspace # Mount your workspace folder to the container
+    environment:
+      - PASSWORD=yourpassword # Optional: to set a password for code-server
+    command: ["code-server", "--bind-addr", "0.0.0.0:8080", "--auth", "none", "--disable-telemetry"]
